@@ -4,14 +4,14 @@ import { RouterModule } from '@angular/router';
 import { ProfesorComponent} from './componentes/profesor/profesor.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { BuscadorComponent } from './componentes/buscador/buscador.component';
+import { AsignaturaComponent } from './componentes/asignatura/asignatura.component';    
 
 export const routes: Routes = [
-    //ruta por defecto
-    {path: '',redirectTo:'home', pathMatch: 'full'},//ruta por defecto
-    {path: 'home', component: HomeComponent},//ruta a home
-    {path: 'profesor', component: ProfesorComponent}, //ruta a profesor
-    { path: 'buscador', component: BuscadorComponent },//ruta a buscador
-    {path : '**', redirectTo: 'home'}//ruta por defecto
+    { path: '', component: HomeComponent }, // Ruta por defecto que carga HomeComponent
+  { path: 'profesor', component: ProfesorComponent },
+  { path: 'asignatura', component: AsignaturaComponent },
+  { path: 'buscador', component: BuscadorComponent },
+    {path : '**', redirectTo: 'home'}//ruta por defecto 
 
 
 ];

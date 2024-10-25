@@ -5,11 +5,8 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule,RouterLink],
+  imports: [RouterModule, RouterLink],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css'], // Corrige el nombre a "styleUrls"
 })
-export class HomeComponent {
-
-
-}
+export class HomeComponent {}

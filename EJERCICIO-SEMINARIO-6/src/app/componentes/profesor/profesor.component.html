@@ -1,1 +1,76 @@
-<p>profesor works!</p>
+<div class="profesor-container">
+  <h1>Gestión de Profesores</h1>
+
+  <!-- Form to add a new professor -->
+  <div class="form-container">
+    <h2>Añadir Profesor</h2>
+    <form (ngSubmit)="addProfesor()">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input
+          type="text"
+          id="nombre"
+          [(ngModel)]="nuevoProfesor.nombre"
+          name="nombre"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input
+          type="number"
+          id="edad"
+          [(ngModel)]="nuevoProfesor.edad"
+          name="edad"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-add">Añadir Profesor</button>
+    </form>
+  </div>
+
+  <!-- Form to search for a professor -->
+  <div class="search-container">
+    <h2>Buscar Profesor</h2>
+    <input
+      type="text"
+      [(ngModel)]="nombreBusqueda"
+      (input)="buscarProfesor()"
+      placeholder="Introduce al menos 3 caracteres"
+    />
+  </div>
+
+  <!-- List of professors -->
+  <h2>Lista de Profesores</h2>
+  <ul class="profesores-list">
+    <li *ngFor="let profesor of profesores">
+      {{ profesor.nombre }} (Edad: {{ profesor.edad }})
+      <button (click)="confirmarEliminacion(profesor)" class="btn btn-delete">Eliminar</button>
+      <button (click)="getProfesoresAsignatura(asignaturas[0])" class="btn btn-view">Ver Asignaturas</button>
+      <select [(ngModel)]="asignaturaSeleccionada" (change)="addAsignatura(profesor)">
+        <option *ngFor="let asignatura of asignaturas" [ngValue]="asignatura">
+          {{ asignatura.nombre }}
+        </option>
+      </select>
+    </li>
+  </ul>
+
+  <!-- Display professors teaching a specific subject -->
+  <div *ngIf="profesoresAsignatura.length > 0">
+    <h2>Profesores que imparten {{ asignaturaSeleccionada?.nombre }}</h2>
+    <ul>
+      <li *ngFor="let prof of profesoresAsignatura">{{ prof.nombre }}</li>
+    </ul>
+  </div>
+
+  <!-- List of subjects (shouldn't repeat from earlier) -->
+  <h2>Asignaturas</h2>
+  <select [(ngModel)]="asignaturaSeleccionada" (change)="addAsignatura(profesores[0])">
+    <option *ngFor="let asignatura of asignaturas" [ngValue]="asignatura">
+      {{ asignatura.nombre }}
+    </option>
+  </select>
+  <button (click)="addAsignatura(profesores[0])" class="btn btn-add" [disabled]="!asignaturaSeleccionada">Añadir Asignatura</button>
+</div>
